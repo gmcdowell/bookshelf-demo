@@ -1,6 +1,4 @@
 # BookshelfJS Demo
-by Greg McDowell
-
 An express-generator modified example of a BookshelfJS API for the purpose of demonstrating some of the features of BookshelfJS
 in a tangible way.
 
