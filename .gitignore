@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+# stand ignore
+node_modules/
+coverage/
+tmp/
+logs/
+
+# webstorm editor files
+.idea/
