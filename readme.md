@@ -23,10 +23,13 @@ in a tangible way.
 ## Setup ##
     npm install
     
-    // create a postgres database called bookshelf-demo & update credentials
+    // create a postgres database called bookshelf-demo & update credentials in knexfile.js
+    
+    // build database tables and populate with test data
     knex migrate:latest
     knex seed:run
     
+    // fire up a test server
     gulp server 
     
 ## Browse ##
