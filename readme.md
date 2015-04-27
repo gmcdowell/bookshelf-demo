@@ -1,6 +1,24 @@
 # BookshelfJS Demo
-An express-generator modified example of a BookshelfJS API for the purpose of demonstrating some of the features of BookshelfJS
+An express-generator'd & modified example of a BookshelfJS API for the purpose of demonstrating some of the features of BookshelfJS
 in a tangible way.
+
+## Technologies demonstrated ##
+- ExpressJS
+- BookshelfJS
+- KnexJS
+- Lodash
+- GulpJS
+
+## BookshelfJS Features demonstrated ##
+- One-to-One relations
+- One-to-Many relations
+- Belongs-to-One relations
+- Belongs-to-Many relations
+
+## KnexJS Features demonstrated ##
+- CLI Migrations & Schema use
+- CLI Seeds
+
 
 
 # License ##
