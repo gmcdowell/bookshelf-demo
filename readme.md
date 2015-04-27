@@ -14,10 +14,30 @@ in a tangible way.
 - One-to-Many relations
 - Belongs-to-One relations
 - Belongs-to-Many relations
+- Polymorphic relations
 
 ## KnexJS Features demonstrated ##
 - CLI Migrations & Schema use
 - CLI Seeds
+
+## Setup ##
+    npm install
+    
+    // create a postgres database called bookshelf-demo & update credentials
+    knex migrate:latest
+    knex seed:run
+    
+    gulp server 
+    
+## Browse ##
+[http://localhost:3000](http://localhost:3000)
+
+[/authors](http://localhost:3000/authors)
+
+[/books](http://localhost:3000/books)
+
+[/books/{id}](http://localhost:3000/books/1)
+
 
 
 
