@@ -26,5 +26,5 @@ function nodemon_task(server_path) {
 }
 
 gulp.task('server', function () {
-    return nodemon_task('bin/www');
+    return nodemon_task('init.js');
 });

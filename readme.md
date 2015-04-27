@@ -1,4 +1,4 @@
-# BookshelfJS Demo
+# BookshelfJS API Demo
 An express-generator'd & modified example of a BookshelfJS API for the purpose of demonstrating some of the features of BookshelfJS
 in a tangible way.
 

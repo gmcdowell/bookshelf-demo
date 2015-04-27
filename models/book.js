@@ -5,7 +5,7 @@ if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
 
-define(['./base_model'], function (DB) {
+define(['./base_model', './author', './person', './person_book'], function (DB) {
 
     var Book = DB.Model.extend({
         tableName: 'books',
@@ -13,11 +13,15 @@ define(['./base_model'], function (DB) {
 
         // relations
         author: function(){
-            return this.hasOne('Author');
+            return this.belongsTo('Author');
         },
 
         owners: function(){
             return this.belongsToMany('Person').through('PersonBook');
+        },
+
+        publisher: function(){
+            return this.belongsTo('Publisher');
         }
     });
 

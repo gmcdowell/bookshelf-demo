@@ -25,11 +25,22 @@ exports.up = function(knex, Promise) {
                 return knex.raw('ALTER TABLE authors ALTER COLUMN created_at SET DEFAULT CURRENT_TIMESTAMP');
             }),
 
+        knex.schema.createTable('publishers', function(table){
+            table.increments('id');
+            table.integer('contact_id');
+            table.string('contact_type').defaultTo('persons');
+            table.timestamp('created_at')
+        })
+            .then(function(){
+                return knex.raw('ALTER TABLE publishers ALTER COLUMN created_at SET DEFAULT CURRENT_TIMESTAMP');
+            }),
+
         // create a Books table
         knex.schema.createTable('books', function(table){
             table.increments('id');
             table.string('title').notNullable();
             table.integer('author_id').references('id').inTable('authors');
+            table.integer('publisher_id').references('id').inTable('publishers');
             table.timestamps();
         })
             .then(function(){
@@ -55,6 +66,7 @@ exports.down = function(knex, Promise) {
     return Promise.all([
         knex.schema.dropTableIfExists('person_books'),
         knex.schema.dropTableIfExists('books'),
+        knex.schema.dropTableIfExists('publishers'),
         knex.schema.dropTableIfExists('authors'),
         knex.schema.dropTableIfExists('persons')
     ]);

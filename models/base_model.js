@@ -7,7 +7,7 @@ if (typeof define !== 'function') {
 
 define(['knex', 'bookshelf', '../knexfile'], function (Knex, Bookshelf, dbConfig) {
 
-   var bookshelf = new Bookshelf(new Knex(dbConfig));
+   var bookshelf = new Bookshelf(new Knex(dbConfig.development));
 
     // enable Bookshelf plugins
     bookshelf.plugin('registry');
