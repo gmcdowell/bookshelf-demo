@@ -12,7 +12,7 @@ var plugins = require('gulp-load-plugins')({
 function nodemon_task(server_path) {
     return plugins.nodemon({
         script: server_path,
-        ext: 'html tpl js',
+        ext: 'html tpl js jade',
         ignore: ['node_modules/**']
     })
         .on('start', function () {

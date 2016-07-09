@@ -15,6 +15,7 @@ define(['express', '../models/index'], function (express, Models) {
         return Models.Book.query(function (qb) {
             /* qb.innerJoin('persons', 'persons.id', 'authors.person_id');
              qb.select('persons.*');*/
+
             qb.limit(25);
         }).fetchAll({
             debug: true
@@ -28,7 +29,16 @@ define(['express', '../models/index'], function (express, Models) {
 
         // eager loading related 'books' on 'author' object
         return Models.Book.where({id: req.params.id})
-            .fetch({withRelated: ['author', 'owners', 'publisher.contact'], debug: true})
+            .fetch({withRelated:
+                [
+                    {
+                        author: function(qb){
+                            qb.where('id', '>', 10 );
+                        }
+                    },
+                    'owners',
+                    'publisher.contact'
+                ], debug: true})
             .then(function (result) {
                 res.json(result);
             });

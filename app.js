@@ -37,7 +37,7 @@ define([
     //app.use('/users', users);
     app.use('/authors', authors);
     app.use('/books', books);
-    /* app.use('/persons', persons);*/
+    app.use('/persons', persons);
 
 // catch 404 and forward to error handler
     app.use(function (req, res, next) {
