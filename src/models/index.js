@@ -2,6 +2,10 @@
  * Created by greg on 28/04/15.
  */
 
+import City from './city';
+import Country from './country';
+import Continent from './continent';
+import Currency from './currency';
 import Author from './author';
 import Book from './book';
 import Person from './person';
@@ -13,5 +17,9 @@ export default {
   Book: Book,
   Person: Person,
   Publisher: Publisher,
-  DB: DB
+  DB: DB,
+  City: City,
+  Country: Country,
+  Continent: Continent,
+  Currency: Currency
 };

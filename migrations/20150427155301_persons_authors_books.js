@@ -9,14 +9,14 @@ exports.up = function (knex, Promise) {
       table.string('first_name').notNullable();
       table.string('family_name').notNullable();
       table.string('email').notNullable();
-      table.timestamps(true, true); // use timestamp type and default to current_timestamp
+      table.timestamps(false, true); // use timestamp type and default to current_timestamp
     }),
 
     // create an Authors table
     knex.schema.createTable('author', function (table) {
       table.increments('id');
       table.integer('person_id').references('id').inTable('person');
-      table.timestamps(true, true);
+      table.timestamps(false, true);
     }),
 
     knex.schema.createTable('publisher', function (table) {
@@ -32,7 +32,7 @@ exports.up = function (knex, Promise) {
       table.string('title').notNullable();
       table.integer('author_id').references('id').inTable('author');
       table.integer('publisher_id').references('id').inTable('publisher');
-      table.timestamps(true, true);
+      table.timestamps(false, true);
     }),
 
     // create a PersonBooks table

@@ -9,11 +9,11 @@ define([
     'morgan',
     'cookie-parser',
     'body-parser',
-    './routes/index',
-    './routes/users',
-    './routes/authors',
-    './routes/books',
-    './routes/persons'
+    'routes/index',
+    'src/routes/users',
+    'src/routes/authors',
+    'src/routes/books',
+    'src/routes/persons'
 ], function (express, path, favicon, logger, cookieParser, bodyParser, routes, users, authors, books, persons) {
 
     var app = express();
