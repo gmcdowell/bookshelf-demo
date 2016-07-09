@@ -1,18 +1,17 @@
 /**
  * Created by greg on 27/04/15.
  */
-if (typeof define !== 'function') {
-    var define = require('amdefine')(module);
-}
 
-define(['knex', 'bookshelf', '../knexfile'], function (Knex, Bookshelf, dbConfig) {
+import Knex from 'knex';
+import Bookshelf from 'bookshelf';
+import Config from '../knexfile';
 
-   var bookshelf = new Bookshelf(new Knex(dbConfig.development));
 
-    // enable Bookshelf plugins
-    bookshelf.plugin('registry');
-    /*bookshelf.plugin('virtuals');
-    bookshelf.plugin('visibility');*/
+const bookshelf = new Bookshelf(new Knex(Config.development));
 
-    return bookshelf;
-});
+// enable Bookshelf plugins
+bookshelf.plugin('registry');
+/*bookshelf.plugin('virtuals');
+ bookshelf.plugin('visibility');*/
+
+export default bookshelf;

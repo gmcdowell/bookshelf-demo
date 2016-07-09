@@ -1,30 +1,31 @@
 /**
  * Created by greg on 27/04/15.
  */
-if (typeof define !== 'function') {
-    var define = require('amdefine')(module);
-}
 
-define(['./base_model', './author', './person', './person_book'], function (DB) {
+import DB from './base_model';
+import './author';
+import './person';
+import './person_book';
+import './publisher';
 
-    var Book = DB.Model.extend({
-        tableName: 'books',
-        hasTimestamps: true,
+var Book = DB.Model.extend({
+  tableName: 'books',
+  hasTimestamps: true,
 
-        // relations
-        author: function(){
-            return this.belongsTo('Author');
-        },
+  // relations
+  author() {
+    return this.belongsTo('Author');
+  },
 
-        owners: function(){
-            return this.belongsToMany('Person').through('PersonBook');
-        },
+  owners() {
+    return this.belongsToMany('Person').through('PersonBook');
+  },
 
-        publisher: function(){
-            return this.belongsTo('Publisher');
-        }
-    });
-
-    // uses Registry plugin
-    return DB.model('Book', Book);
+  publisher() {
+    return this.belongsTo('Publisher');
+  }
 });
+
+// uses Registry plugin
+export default DB.model('Book', Book);
+
