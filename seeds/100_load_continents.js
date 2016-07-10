@@ -16,6 +16,12 @@ exports.seed = function (knex, Promise) {
     }),
     city_task = status.addItem('cities', {
       type: ['count', 'time']
+    }),
+    government_task = status.addItem('governments', {
+      type: ['count', 'time']
+    }),
+    currency_task = status.addItem('currencies', {
+      type: ['count', 'time']
     });
 
 
@@ -30,73 +36,97 @@ exports.seed = function (knex, Promise) {
 
   return Promise.each(country_records, row => {
 
-    return knex('continent').where({name: _.get(row, 'Continent')})
-      .select('id')
-      .then(result => {
-        if (result.length < 1) {
-          return knex('continent')
-            .insert({name: _.get(row, 'Continent')})
-            .returning('id')
-            .tap(() => {
-              continent_task.inc();
-            });
-        }
-        else return result;
-      })
-      .then(result => {
-
-        return Promise.join(
-          // country
-          knex('country')
-            .insert({
-              code: _.get(row, 'Country code'),
-              name: _.get(row, 'Country (en)'),
-              //currency_code: _.get(row, 'Currency code'),
-              //currency: _.get(row, 'Currency'),
-              phone_prefix: _.get(row, 'Dialing prefix'),
-              population: _.get(row, 'Population'),
-              continent_id: result[0].id
-            })
-            .returning('id')
-            .tap(() => {
-              country_task.inc();
-            })
-          ,
-
-          // city
-          knex('city')
-            .insert({
-              name: _.get(row, 'Capital')
-            })
-            .returning('id')
-            .tap(() => {
-              city_task.inc();
-            }),
-
-          // handler
-          (country_id, city_id) => {
-            console.log('------', country_id, city_id);
-
-            let todo = [];
-
-            if (city_id.length > 0) {
-              todo.push(knex('country')
-                .update({capital_city_id: _.parseInt(city_id[0].id)})
-                .where({id: _.parseInt(country_id[0].id)}));
-
-              todo.push(knex('city')
-                .update({country_id: _.parseInt(country_id[0].id)})
-                .where({id: _.parseInt(city_id[0].id)}))
-            }
-
-            console.log('todo: ', todo);
-
-            // now update each with the converse id
-            return Promise.all(todo)
+    return Promise.join(
+      // continent
+      knex('continent')
+        .where({name: _.get(row, 'Continent')})
+        .select('id')
+        .then(result => {
+          if (result.length < 1) {
+            return knex('continent')
+              .insert({name: _.get(row, 'Continent')})
+              .returning('id')
+              .tap(() => {
+                continent_task.inc();
+              })
+              .then(r => {
+                return [{id: r[0]}]
+              })
           }
-        )
+          else return result;
+        }),
 
+      // currency
+      knex('currency')
+        .where({name: _.get(row, 'Currency')})
+        .select('id')
+        .then(result => {
+          if (result.length < 1) {
+            return knex('currency')
+              .insert({name: _.get(row, 'Currency')})
+              .returning('id')
+              .tap(() => {
+                currency_task.inc();
+              })
+              .then(r => {
+                return [{id: r[0]}]
+              })
+          }
+          else return result;
+        }),
+
+      // government
+      knex('government')
+        .where({name: _.get(row, 'Government form')})
+        .select('id')
+        .then(result => {
+          if (result.length < 1) {
+            return knex('government')
+              .insert({name: _.get(row, 'Government form')})
+              .returning('id')
+              .tap(() => {
+                government_task.inc();
+              })
+              .then(r => {
+                return [{id: r[0]}]
+              })
+          }
+          else return result;
+        }),
+
+      // handler
+      (continent_id, currency_id, government_id) => {
+
+        return knex('country')
+          .insert({
+            code: _.get(row, 'Country code'),
+            name: _.get(row, 'Country (en)'),
+            currency_code: _.get(row, 'Currency code'),
+            phone_prefix: _.get(row, 'Dialing prefix'),
+            population: _.get(row, 'Population'),
+            area: _.get(row, 'Area'),
+            coastline: _.get(row, 'Coastline'),
+            birth_rate: _.get(row, 'Birthrate'),
+            death_rate: _.get(row, 'Deathrate'),
+            life_expectancy: _.get(row, 'Life expectancy'),
+            continent_id: continent_id[0].id,
+            currency_id: currency_id[0].id,
+            government_id: government_id[0].id
+          })
+          .returning('id')
+
+      }
+    )
+      .tap(() => {
+        country_task.inc();
       })
 
-  });
+  })
+    .return(capitals_records)
+    .each(row => {
+      return knex('country')
+        .where({code: _.get(row, 'Country code')})
+        .select('id')
+      
+    });
 };
