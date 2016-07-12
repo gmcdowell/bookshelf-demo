@@ -7,7 +7,7 @@
     "data:latest": "./node_modules/.bin/knex migrate:latest",
     "data:seed": "./node_modules/.bin/knex seed:run",
     "data:reload": "npm run data:rollback && npm run data:latest && npm run data:seed",
-    "start": "node ./bin/www",
+    "start": "node ./build/bundle",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive ./test",
     "test:coverage": "./node_modules/.bin/nyc --require babel-register ./node_modules/.bin/mocha --recursive ./test"
   },

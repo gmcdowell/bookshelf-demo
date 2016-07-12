@@ -20,7 +20,9 @@ fs.readdirSync('node_modules')
 
 
 module.exports = {
-  entry: './src/init.js',
+  entry: [
+    './src/init.js'
+  ],
   target: 'node',
   output: {
     path: './build',
