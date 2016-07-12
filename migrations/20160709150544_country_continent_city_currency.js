@@ -35,8 +35,9 @@ exports.up = function(knex, Promise) {
       table.increments('id');
       table.string('name').notNullable();
       table.integer('population');
-      table.integer('country_id');//.references('id').inTable('country');
-      //table.boolean('is_capital').defaultTo(false);
+      table.specificType('gps_coordinates', 'point');
+      table.boolean('is_capital').defaultTo(false);
+      table.integer('country_id').references('id').inTable('country');
       table.timestamps(true, true);
     }),
 
