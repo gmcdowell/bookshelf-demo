@@ -12,7 +12,7 @@ describe("Models > Continent", function() {
   let continents;
 
   before(function () {
-    return Models.Continent.fetchAll()
+    return Models.Continent.fetchAll({withRelated: ['countries', 'cities']})
       .then(results => {
         continents = results;
         return;
@@ -25,5 +25,13 @@ describe("Models > Continent", function() {
 
   it("should load all attributes into the Model instance", function(){
     expect(continents.at(0).attributes).contains.keys(['id', 'name', 'created_at', 'updated_at'])
+  });
+  
+  it("should load each continents\'s related countries", () => {
+      expect(continents.first().related('countries').length).to.be.gte(1);
+  });
+
+  it.only("should load all cities of all related countries ", () => {
+      expect(continents.first().related('cities').length).to.be.gte(1);
   });
 });

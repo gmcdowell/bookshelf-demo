@@ -9,7 +9,7 @@ import cors from'cors';
 import Config from 'config';
 import winston from '../config/_winston';
 import expressWintston from 'express-winston';
-import Routes from './routes/index';
+//import Routes from './routes/index';
 
 
 const app = express();
