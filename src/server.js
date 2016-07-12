@@ -43,6 +43,14 @@ app.use([`${Config.get('API.URL_PREFIX')}/continents`],
   Routes.Continents
 );
 
+app.use([`${Config.get('API.URL_PREFIX')}/countries`],
+  Routes.Countries
+);
+
+app.use([`${Config.get('API.URL_PREFIX')}/cities`],
+  Routes.Cities
+);
+
 
 // Setup Winston error logging
 app.use(expressWintston.errorLogger({winstonInstance: winston}));

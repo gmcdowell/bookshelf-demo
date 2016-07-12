@@ -3,7 +3,11 @@
  */
 
 import Continents from './continents';
+import Countries from './countries';
+import Cities from './cities';
 
 export default {
-  Continents: Continents
+  Continents: Continents,
+  Countries: Countries,
+  Cities: Cities
 }
