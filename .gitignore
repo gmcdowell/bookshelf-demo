@@ -7,3 +7,6 @@ logs/
 
 # webstorm editor files
 .idea/
+
+# webpack build dir
+build/
