@@ -31,7 +31,7 @@ describe("Models > Continent", function() {
       expect(continents.first().related('countries').length).to.be.gte(1);
   });
 
-  it.only("should load all cities of all related countries ", () => {
+  it("should load all cities of all related countries ", () => {
       expect(continents.first().related('cities').length).to.be.gte(1);
   });
 });
