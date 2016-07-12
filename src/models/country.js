@@ -10,7 +10,7 @@ let Country = DB.Model.extend({
     return this.hasMany(City);
   },
 
-  // specifiy extra criteria in relation
+  // specify extra criteria in relation
   capital(){
     return this.hasOne(City).query({where: {is_capital:true}});
   }

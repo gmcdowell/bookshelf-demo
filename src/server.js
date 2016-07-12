@@ -9,7 +9,7 @@ import cors from'cors';
 import Config from 'config';
 import winston from '../config/_winston';
 import expressWintston from 'express-winston';
-//import Routes from './routes/index';
+import Routes from './routes/index';
 
 
 const app = express();
@@ -39,9 +39,9 @@ app.use(expressWintston.logger({winstonInstance: winston}));
  */
 
 // Routes
-/*app.use([`${Config.get('API.URL_PREFIX')}/continents`],
+app.use([`${Config.get('API.URL_PREFIX')}/continents`],
   Routes.Continents
-);*/
+);
 
 
 // Setup Winston error logging
