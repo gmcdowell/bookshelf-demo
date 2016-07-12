@@ -14,9 +14,6 @@ exports.seed = function (knex, Promise) {
     continent_task = status.addItem('continents', {
       type: ['count', 'time']
     }),
-    city_task = status.addItem('cities', {
-      type: ['count', 'time']
-    }),
     government_task = status.addItem('governments', {
       type: ['count', 'time']
     }),
@@ -26,10 +23,6 @@ exports.seed = function (knex, Promise) {
 
 
   let country_records = csv_parse(fs.readFileSync(path.resolve(__dirname, 'data/countries.csv'), 'utf8'), {
-      delimiter: ';',
-      columns: true
-    }),
-    capitals_records = csv_parse(fs.readFileSync(path.resolve(__dirname, 'data/capitals.csv'), 'utf8'), {
       delimiter: ';',
       columns: true
     });
@@ -122,26 +115,5 @@ exports.seed = function (knex, Promise) {
         country_task.inc();
       })
 
-  })
-    .return(capitals_records)
-    .each(row => {
-      return knex('country')
-        .where({code: _.get(row, 'Country code')})
-        .select('id')
-        .then(country_id => {
-
-          // capital cities
-          return knex('city').insert({
-            name: _.get(row, 'City (en)'),
-            country_id: country_id.length ? country_id[0].id : null,
-            population: _.get(row, 'Population'),
-            gps_coordinates: knex.raw('point(:lat, :long)', {
-              lat: _.get(row, 'Latitude'),
-              long: _.get(row, 'Longitude')
-            }),
-            is_capital: true
-          })
-        })
-      
-    });
+  });
 };

@@ -1,4 +1,4 @@
-import DB from './base_model';
+import DB from './orm';
 
 let Continent = DB.Model.extend({
   tableName: 'continent',

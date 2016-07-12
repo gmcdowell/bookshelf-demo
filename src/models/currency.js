@@ -1,4 +1,4 @@
-import DB from './base_model';
+import DB from './orm';
 
 let Currency = DB.Model.extend({
   tableName: 'currency',

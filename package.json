@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": false,
   "scripts": {
+    "data:rollback": "./node_modules/.bin/knex migrate:rollback",
+    "data:latest": "./node_modules/.bin/knex migrate:latest",
+    "data:seed": "./node_modules/.bin/knex seed:run",
+    "data:reload": "npm run data:rollback && npm run data:latest && npm run data:seed",
     "start": "node ./bin/www",
     "test": "./node_modules/.bin/mocha --compilers js:babel-register --recursive ./test",
     "test:coverage": "./node_modules/.bin/nyc --require babel-register ./node_modules/.bin/mocha --recursive ./test"
@@ -16,11 +20,6 @@
     "pg": "^6.0.1"
   },
   "devDependencies": {
-    "debug": "~2.2.0",
-    "random-to": "0.0.2",
-    "require-dir": "^0.3.0",
-    "run-sequence": "^1.2.2",
-    "yargs": "^4.7.1",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
@@ -29,9 +28,7 @@
     "babel-polyfill": "^6.9.0",
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
-    "istanbul": "^0.4.2",
     "mocha": "^2.5.3",
-    "nodemon": "^1.9.1",
     "supertest": "^1.2.0",
     "node-status": "^0.1.7",
     "nyc": "^7.0.0"

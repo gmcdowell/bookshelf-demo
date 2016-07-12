@@ -7,7 +7,6 @@ in a tangible way.
 - BookshelfJS
 - KnexJS
 - Lodash
-- GulpJS
 
 ## BookshelfJS Features demonstrated ##
 - One-to-One relations
@@ -30,19 +29,10 @@ in a tangible way.
     knex seed:run
     
     // fire up a test server
-    gulp server 
+    npm start
     
 ## Browse ##
 [http://localhost:3000](http://localhost:3000)
-
-[/authors](http://localhost:3000/authors)
-
-[/books](http://localhost:3000/books)
-
-[/books/{id}](http://localhost:3000/books/1)
-
-
-
 
 # License ##
 
