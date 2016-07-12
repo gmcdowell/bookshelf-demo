@@ -10,7 +10,21 @@ const expect = chai.expect;
 
 describe("Models > Country", function() {
 
-  it("should instantiate a Book Model", function() {
-    expect(new Models.Country).to.be.instanceOf(Bookshelf.Model);
+  let countries;
+
+  before(function () {
+    return Models.Country.fetchAll()
+      .then(results => {
+        countries = results;
+        return;
+      })
+  });
+
+  it("should fetchAll records", function() {
+    expect(countries.length).to.equal(247);
+  });
+
+  it("should load attributes into Model instance", () => {
+      expect(countries.first().attributes).contains.keys(['id', 'name', 'code'])
   });
 });
