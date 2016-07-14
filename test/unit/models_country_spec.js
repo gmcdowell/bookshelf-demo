@@ -12,7 +12,7 @@ describe.only("Models > Country", function() {
   let countries;
 
   before(function () {
-    return Models.Country.fetchAll({withRelated: ['cities'], debug:true})
+    return Models.Country.fetchAll({withRelated: ['cities']})
       .then(results => {
         countries = results;
         return;
