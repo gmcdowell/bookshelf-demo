@@ -71,6 +71,5 @@ app.use(function (req, res) {
 });
 
 app.listen(Config.get('API.PORT'), Config.get('API.HOSTNAME'));
-//app.listen(3000, 'localhost');
 
 export default app;

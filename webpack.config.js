@@ -6,7 +6,6 @@
 require('babel-core/register');
 
 var
-  //path = require('path'),
   fs = require('fs'),
   nodeModules = {};
 

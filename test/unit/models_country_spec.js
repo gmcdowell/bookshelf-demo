@@ -7,12 +7,12 @@ import Models from '../../src/models/index';
 
 const expect = chai.expect;
 
-describe("Models > Country", function() {
+describe.only("Models > Country", function() {
 
   let countries;
 
   before(function () {
-    return Models.Country.fetchAll({withRelated: ['cities']})
+    return Models.Country.fetchAll({withRelated: ['cities'], debug:true})
       .then(results => {
         countries = results;
         return;
