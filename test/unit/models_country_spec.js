@@ -7,7 +7,7 @@ import Models from '../../src/models/index';
 
 const expect = chai.expect;
 
-describe.only("Models > Country", function() {
+describe("Models > Country", function() {
 
   let countries;
 
